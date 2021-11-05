@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    :root {
+        --main-width: 220;
+    }
+    .test-div {
+        width: 100%;
+        /* 使用padding来撑开子元素 */
+        padding-top: 100%; 
+        height: auto;
+        background-color: aqua;
+    }
+    /* 使用absolute改变文档流，相当于与父元素处于两个文档流中 */
+    .content{
+        position: absolute;
+        top: 0;
+    }
+    .content2 {
+        width: auto;
+        height: calc(100vh - 60px);
+    }
+    .footer{
+        position: fixed;
+        height: 60px;
+        background-color: aqua;
+        width: 100%;
+        bottom: 0px;
+    }
+    .page {
+        position: relative;
+    }
+</style>
+<body>
+    <!-- <div class="test-div">
+        <div class="content">
+            test-div
+        </div>
+    </div> -->
+    <div class="page">
+        <div class="content2">
+            test
+        </div>
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
