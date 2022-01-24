@@ -1,38 +1,43 @@
-
-
-let promiseFuns = [];
-let count = 10;
-let result = [];
-while(count--) {
-    ((c) => {
-        promiseFuns.push(() => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    console.log(c, new Date())
-                    resolve(c);
-                }, c * 500);
-            });
-        })
-    })(count)
-    
+function Node(val, index, next) {
+    this.val = val;
+    this.index = index;
+    this.next = next;
 }
-let iterators = Array.from(promiseFuns).entries();
 
-let works = Array(3).fill(iterators).map(async (iterator) => {
-    for([index, item] of iterators) {
-        console.log('test', index, item);
-        result[index] = await item();
+function mergeVector(l1, l2) {
+    console.log(l1, l2);
+    if(!l1 || !l2) {
+        console.log('here')
+        return null
     }
-});
-Promise.all(works).then(() => {console.log(result)});
-
-
-// for([index, item] of iterators) {
-//     console.log(index, item);
-//     break;
-// }
-
-// for([index, item] of iterators) {
-//     console.log(3333, index,item);
-//     // break;
-// }
+    
+    let newHead = new Node(0,-1);
+    let currNode = newHead;
+    let p=l1;
+    let q=l2;
+    
+    
+    while(p || q) {
+        
+        if(p.index === q.index) {
+            currNode.next = new Node(p.val + q.val, p.index);
+            p = p.next;
+            q = q.next;
+            
+        } else if(p.index < q.index) {
+            currNode.next = new Node(p.val, p.index);
+            p = p.next
+            
+        } else if(p.index > q.index) {
+            currNode.next = new Node(q.val, q.index);
+            q = q.next;
+        }
+        currNode = currNode.next;
+        console.log('====', p,q,currNode);
+    }
+    return newHead.next;
+}
+// [1,0,3,0,0,0,0,2,0,0] [1,2,3,0,0,0,0,2,0,0]
+let l1 = new Node(1,0, new Node(3,2, new Node(2,7)));
+let l2 = new Node (1,0, new Node(2,1, new Node(3,2, new Node(2,7))))
+console.log('result: ', mergeVector(l1, l2))

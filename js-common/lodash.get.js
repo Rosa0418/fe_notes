@@ -21,25 +21,13 @@ test()
 * @return (any) value
 */
 function _get(object, path, defaultValue) {
-    if (!object || !path) {
-        return object || defaultValue
-    }
-    let pathArr = path;
-    if (typeof path === 'string') {
-        const temp = path.split('.');
-        pathArr = [];
-        for(let i=0; i < temp.length; i++) {
-            const str = temp[i];
-            if (key.indexOf('[') > 0) {
-                const keyArr = key.split('[');
-                for (let j=0; j < keyArr.length; j ++) {
-                    pathArr.push(keyArr[j].replace(']', ''));
-                }
-            } else {
-                pathArr.push(str);
-            }
-        }
-	}
+  if (!object || !path) {
+      return object || defaultValue
+  }
+  let pathArr = path;
+  if (typeof path === 'string') {
+      pathArr = path.replace('[', '.').replace(']', '').split('.');
+  }  
   let currentObj = object;
   for(let i=0; i < pathArr.length; i++) {
     const key = pathArr[i];

@@ -1,5 +1,9 @@
 
-
+/**
+ * 方法用于限定
+ * @param {*} promiseFuns 
+ * @returns 
+ */
 function promiseLimit(promiseFuns) {
     let iterators = Array.from(promiseFuns).entries();
 
