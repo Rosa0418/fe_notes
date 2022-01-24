@@ -19,7 +19,7 @@ function stringToNumber (str) {
 	};
 	for(var i=0,len=str.length;i<len;i++){
 		var scode = str[i].charCodeAt(0),
-	key = scode +'';
+		key = scode +'';
 		if(scode < 48 || scode > 57) throw new Error('string can not convert number');
 		num += maps[key] * Math.pow(10, len - i - 1);
 	}

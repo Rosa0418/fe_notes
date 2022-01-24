@@ -5,9 +5,7 @@ function Node(val, index, next) {
 }
 
 function mergeVector(l1, l2) {
-    console.log(l1, l2);
     if(!l1 || !l2) {
-        console.log('here')
         return null
     }
     
@@ -33,7 +31,6 @@ function mergeVector(l1, l2) {
             q = q.next;
         }
         currNode = currNode.next;
-        console.log('====', p,q,currNode);
     }
     return newHead.next;
 }
